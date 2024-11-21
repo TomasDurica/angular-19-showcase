@@ -22,10 +22,10 @@ import { map } from 'rxjs'
           <main>
             {{ product.value()?.description }}
           </main>
-          <div class="flex gap-2 h-16 ">
+          <div class="flex flex-wrap gap-2 h-16">
             @for (url of product.value()?.images; track url) {
               <button (click)="activeImage.set(url)" class="aspect-ratio-square b-1 b-outline shape-s">
-                <img class="aspect-ratio-square" [src]="url"/>
+                <img class="aspect-ratio-square h-16" [src]="url"/>
               </button>
             }
           </div>
@@ -39,19 +39,22 @@ import { map } from 'rxjs'
 })
 export default class ProductDetailComponent {
   private readonly productService = inject(ProductService)
-  private readonly productId = toSignal(inject(ActivatedRoute).params.pipe(map(params => params['productId'] as string ?? '')))
+  private readonly productId = toSignal(
+    inject(ActivatedRoute).params.pipe(
+      map((params) => (params['productId'] as string) ?? '')
+    )
+  )
 
   public readonly product = resource({
     request: () => ({ productId: this.productId() }),
-    loader: async ({ request: { productId } }) => productId
-      ? await this.productService.getProductDetail(productId)
-      : undefined
+    loader: async ({ request: { productId } }) =>
+      productId
+        ? await this.productService.getProductDetail(productId)
+        : undefined
   }).asReadonly()
 
   public readonly activeImage = linkedSignal(() => {
     const images = this.product.value()?.images
-    return images?.length
-      ? images[0]
-      : ''
+    return images?.length ? images[0] : ''
   })
 }
