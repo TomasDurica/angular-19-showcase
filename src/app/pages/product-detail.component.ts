@@ -1,4 +1,10 @@
-﻿import { Component, inject, linkedSignal, resource } from '@angular/core'
+﻿import {
+  Component,
+  computed,
+  inject,
+  linkedSignal,
+  resource,
+} from '@angular/core'
 import { ActivatedRoute, RouterLink } from '@angular/router'
 import { ProductService } from '../services/product.service'
 import PageLayoutComponent from '../components/page-layout.component'
@@ -10,9 +16,16 @@ import { map } from 'rxjs'
   template: `
     <page-layout>
       <div class="pa-4 flex flex-col gap-1">
-        <a routerLink="/" class="font-size-3 color-tertiary"
-          >&lt;&lt; Back to categories</a
-        >
+        <div class="font-size-3 color-tertiary">
+          <a routerLink="/" class="decoration-underline"> Categories </a>
+          <span> &gt; </span>
+          <a
+            routerLink="/categories/{{ category()?.slug }}"
+            class="decoration-underline"
+          >
+            {{ category()?.name }}
+          </a>
+        </div>
         <div class="h-16">
           <h2 class="font-size-8 color-secondary">
             {{ product.value()?.title }}
@@ -56,6 +69,12 @@ export default class ProductDetailComponent {
         ? await this.productService.getProductDetail(productId)
         : undefined,
   }).asReadonly()
+
+  public readonly category = computed(() =>
+    this.productService.categories
+      .value()
+      ?.find((category) => category.slug === this.product.value()?.category),
+  )
 
   public readonly activeImage = linkedSignal(() => {
     const images = this.product.value()?.images

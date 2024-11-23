@@ -56,6 +56,7 @@
 .color-secondary{--un-text-opacity:1;color:rgb(var(--md-sys-colors-secondary) / var(--un-text-opacity)) /* rgb(var(--md-sys-colors-secondary)) */;}
 .color-tertiary{--un-text-opacity:1;color:rgb(var(--md-sys-colors-tertiary) / var(--un-text-opacity)) /* rgb(var(--md-sys-colors-tertiary)) */;}
 .font-black{font-weight:900;}
+.decoration-underline{text-decoration-line:underline;}
 .focus\:outline-primary:focus{--un-outline-color-opacity:1;outline-color:rgb(var(--md-sys-colors-primary) / var(--un-outline-color-opacity)) /* rgb(var(--md-sys-colors-primary)) */;}
 .min-h-dvh{min-height:100dvh;}
 .shape-m{border-radius:.75rem;}

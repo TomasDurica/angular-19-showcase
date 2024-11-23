@@ -9,9 +9,9 @@ import { ProductService } from '../services/product.service'
   template: `
     <page-layout>
       <div class="pa-4 flex flex-col gap-1">
-        <a routerLink="/" class="font-size-3 color-tertiary"
-          >&lt;&lt; Back to categories</a
-        >
+        <div class="font-size-3 color-tertiary">
+          <a routerLink="/" class="decoration-underline"> Categories </a>
+        </div>
         <div class="h-16">
           <h2 class="font-size-8 color-secondary">{{ categoryName() }}</h2>
         </div>

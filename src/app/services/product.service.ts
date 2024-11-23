@@ -34,6 +34,7 @@ const productListSchema = z
 const productDetailSchema = z.object({
   title: z.string(),
   description: z.string(),
+  category: z.string(),
   price: z.number(),
   rating: z.number(),
   images: z.array(z.string()),
@@ -70,7 +71,7 @@ export class ProductService {
 
   public async getProductDetail(productId: string) {
     const data = await fetchJson(
-      `${baseUrl}/${productId}?select=title&select=description&select=price&select=rating&select=images`,
+      `${baseUrl}/${productId}?select=title&select=description&select=category&select=price&select=rating&select=images`,
     )
     return productDetailSchema.parse(data)
   }
