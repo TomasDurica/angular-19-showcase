@@ -8,9 +8,7 @@ import SearchProductsComponent from './search-products.component'
   template: `
     <div class="h-full flex flex-col max-w-168 mx-auto">
       <header class="flex flex-row gap-2 h-19 px-4 py-2 items-center">
-        <a routerLink="/" class="block font-black color-primary min-w-48">
-          Signal Store
-        </a>
+        <a routerLink="/" class="block font-black color-primary min-w-48"> Signal Store </a>
         <div class="flex-1">
           <search-products />
         </div>

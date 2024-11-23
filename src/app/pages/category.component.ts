@@ -26,21 +26,15 @@ import { ProductService } from '../services/product.service'
 })
 export default class CategoryComponent {
   private readonly productService = inject(ProductService)
-  private readonly categorySlug =
-    (inject(ActivatedRoute).snapshot.params['categorySlug'] as string) ?? ''
+  private readonly categorySlug = (inject(ActivatedRoute).snapshot.params['categorySlug'] as string) ?? ''
 
   public readonly products = resource({
     request: () => ({ categorySlug: this.categorySlug }),
     loader: async ({ request: { categorySlug } }) =>
-      categorySlug
-        ? await this.productService.getProductsByCategory(categorySlug)
-        : [],
+      categorySlug ? await this.productService.getProductsByCategory(categorySlug) : [],
   }).asReadonly()
 
   public readonly categoryName = computed(
-    () =>
-      this.productService.categories
-        .value()
-        ?.find((category) => category.slug === this.categorySlug)?.name,
+    () => this.productService.categories.value()?.find((category) => category.slug === this.categorySlug)?.name,
   )
 }

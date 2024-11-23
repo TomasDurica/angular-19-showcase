@@ -6,10 +6,7 @@ import { Category } from '../services/product.service'
   selector: 'category-item',
   imports: [RouterLink],
   template: `
-    <a
-      routerLink="categories/{{ category().slug }}"
-      class="block pa-4 shape-s aligne-center bg-surface-container color-secondary"
-    >
+    <a routerLink="categories/{{ category().slug }}" class="block pa-4 shape-s bg-surface-container color-secondary">
       {{ category().name }}
     </a>
   `,

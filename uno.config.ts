@@ -22,11 +22,7 @@ export default defineConfig({
   transformers: [transformerVariantGroup()],
   cli: {
     entry: {
-      patterns: [
-        'src/index.html',
-        'src/**/*.component.ts',
-        'src/**/*.component.html',
-      ],
+      patterns: ['src/index.html', 'src/**/*.component.ts', 'src/**/*.component.html'],
       outFile: 'src/styles/uno.css',
     },
   },

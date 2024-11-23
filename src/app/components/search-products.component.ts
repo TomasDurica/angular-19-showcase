@@ -1,11 +1,4 @@
-﻿import {
-  Component,
-  ElementRef,
-  HostListener,
-  inject,
-  linkedSignal,
-  model,
-} from '@angular/core'
+﻿import { Component, ElementRef, HostListener, inject, linkedSignal, model } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { toObservable, toSignal } from '@angular/core/rxjs-interop'
 import { debounceTime, from, switchMap } from 'rxjs'
@@ -25,20 +18,14 @@ import ProductItemComponent from './product-item.component'
           [(ngModel)]="query"
         />
         @if (showResults()) {
-          <div
-            class="absolute mt-2 shape-s overflow-clip bg-surface-container-high w-full flex flex-col gap-2"
-          >
+          <div class="absolute mt-2 shape-s overflow-clip bg-surface-container-high w-full flex flex-col gap-2">
             @for (product of products$ | async; track product.id) {
               <product-item [product]="product" />
             }
           </div>
         }
       </div>
-      <button
-        class="shape-s-end bg-primary-container color-on-primary-container px-4"
-      >
-        Search
-      </button>
+      <button class="shape-s-end bg-primary-container color-on-primary-container px-4">Search</button>
     </div>
   `,
 })

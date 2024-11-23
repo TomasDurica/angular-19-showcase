@@ -44,9 +44,7 @@ const productDetailSchema = z.object({
 export class ProductService {
   public readonly categories = resource({
     loader: async () => {
-      const data = await fetchJson(
-        `${baseUrl}/categories?select=slug&select=name`,
-      )
+      const data = await fetchJson(`${baseUrl}/categories?select=slug&select=name`)
       return z.array(categorySchema).parse(data)
     },
   }).asReadonly()

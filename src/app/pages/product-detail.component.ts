@@ -1,10 +1,4 @@
-﻿import {
-  Component,
-  computed,
-  inject,
-  linkedSignal,
-  resource,
-} from '@angular/core'
+﻿import { Component, computed, inject, linkedSignal, resource } from '@angular/core'
 import { ActivatedRoute, RouterLink } from '@angular/router'
 import { ProductService } from '../services/product.service'
 import PageLayoutComponent from '../components/page-layout.component'
@@ -19,10 +13,7 @@ import { map } from 'rxjs'
         <div class="font-size-3 color-tertiary">
           <a routerLink="/" class="decoration-underline"> Categories </a>
           <span> &gt; </span>
-          <a
-            routerLink="/categories/{{ category()?.slug }}"
-            class="decoration-underline"
-          >
+          <a routerLink="/categories/{{ category()?.slug }}" class="decoration-underline">
             {{ category()?.name }}
           </a>
         </div>
@@ -38,17 +29,12 @@ import { map } from 'rxjs'
           </main>
           <div class="flex flex-wrap gap-2 h-16">
             @for (url of product.value()?.images; track url) {
-              <button
-                (click)="activeImage.set(url)"
-                class="aspect-ratio-square b-1 b-outline shape-s"
-              >
+              <button (click)="activeImage.set(url)" class="aspect-ratio-square b-1 b-outline shape-s">
                 <img class="w-16" [src]="url" />
               </button>
             }
           </div>
-          <div class="color-primary font-size-8 text-right">
-            {{ product.value()?.price }}&euro;
-          </div>
+          <div class="color-primary font-size-8 text-right">{{ product.value()?.price }}&euro;</div>
         </div>
       </div>
     </page-layout>
@@ -57,23 +43,17 @@ import { map } from 'rxjs'
 export default class ProductDetailComponent {
   private readonly productService = inject(ProductService)
   private readonly productId = toSignal(
-    inject(ActivatedRoute).params.pipe(
-      map((params) => (params['productId'] as string) ?? ''),
-    ),
+    inject(ActivatedRoute).params.pipe(map((params) => (params['productId'] as string) ?? '')),
   )
 
   public readonly product = resource({
     request: () => ({ productId: this.productId() }),
     loader: async ({ request: { productId } }) =>
-      productId
-        ? await this.productService.getProductDetail(productId)
-        : undefined,
+      productId ? await this.productService.getProductDetail(productId) : undefined,
   }).asReadonly()
 
   public readonly category = computed(() =>
-    this.productService.categories
-      .value()
-      ?.find((category) => category.slug === this.product.value()?.category),
+    this.productService.categories.value()?.find((category) => category.slug === this.product.value()?.category),
   )
 
   public readonly activeImage = linkedSignal(() => {
