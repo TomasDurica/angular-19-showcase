@@ -7,19 +7,19 @@ export default defineConfig({
     presetUno(),
     presetMaterial({
       colors: {
-        themes: [{
-          isDark: true,
-          colors: {
-            primary: fromHex('#00aaff'),
-            tertiary: fromHex('#00ffaa')
-          }
-        }]
-      }
-    })
+        themes: [
+          {
+            isDark: true,
+            colors: {
+              primary: fromHex('#00aaff'),
+              tertiary: fromHex('#00ffaa'),
+            },
+          },
+        ],
+      },
+    }),
   ],
-  transformers: [
-    transformerVariantGroup()
-  ],
+  transformers: [transformerVariantGroup()],
   cli: {
     entry: {
       patterns: [
@@ -28,6 +28,6 @@ export default defineConfig({
         'src/**/*.component.html',
       ],
       outFile: 'src/styles/uno.css',
-    }
-  }
+    },
+  },
 })

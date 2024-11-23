@@ -1,4 +1,4 @@
-﻿import { Component, inject, resource } from '@angular/core'
+﻿import { Component, inject } from '@angular/core'
 import { ProductService } from '../services/product.service'
 import PageLayoutComponent from '../components/page-layout.component'
 import CategoryItemComponent from '../components/category-item.component'
@@ -15,7 +15,7 @@ import CategoryItemComponent from '../components/category-item.component'
         }
       </div>
     </page-layout>
-  `
+  `,
 })
 export default class IndexComponent {
   public readonly categories = inject(ProductService).categories

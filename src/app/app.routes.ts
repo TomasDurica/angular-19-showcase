@@ -6,5 +6,5 @@ import CategoryComponent from './pages/category.component'
 export const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'categories/:categorySlug', component: CategoryComponent },
-  { path: 'products/:productId', component: ProductDetailComponent }
+  { path: 'products/:productId', component: ProductDetailComponent },
 ]

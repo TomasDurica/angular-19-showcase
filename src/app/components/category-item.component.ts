@@ -4,13 +4,16 @@ import { Category } from '../services/product.service'
 
 @Component({
   selector: 'category-item',
-  imports: [
-    RouterLink
-  ],
+  imports: [RouterLink],
   template: `
-    <a routerLink="categories/{{category().slug}}" class="block pa-4 shape-s aligne-center bg-surface-container color-secondary"> {{ category().name }} </a>
-  `
+    <a
+      routerLink="categories/{{ category().slug }}"
+      class="block pa-4 shape-s aligne-center bg-surface-container color-secondary"
+    >
+      {{ category().name }}
+    </a>
+  `,
 })
 export default class CategoryItemComponent {
-  readonly category = input.required<Category>()
+  public readonly category = input.required<Category>()
 }
