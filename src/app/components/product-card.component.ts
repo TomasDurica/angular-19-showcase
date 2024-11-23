@@ -7,8 +7,9 @@ import { ProductItem } from '../services/product.service'
   imports: [RouterLink],
   template: `
     <a routerLink="/products/{{ product().id }}" class="shape-m bg-surface-container pa-4 flex flex-col gap-2">
-      <img class="block aspect-ratio-square" [src]="product().thumbnail" alt="Product Thumbnail" />
-
+      <div class="relative aspect-ratio-square">
+        <img [src]="product().thumbnail" class="block object-contain" alt="Product Thumbnail" />
+      </div>
       <div class="text-ellipsis line-clamp-2 text-center h-14">
         {{ product().title }}
       </div>
