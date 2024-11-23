@@ -19,7 +19,7 @@ import { map } from 'rxjs'
           </h2>
         </div>
         <div class="grid grid-cols-2 grid-rows-[auto_16] gap-2">
-          <img class="aspect-ratio-square" [src]="activeImage()"/>
+          <img [src]="activeImage()" />
           <main>
             {{ product.value()?.description }}
           </main>
@@ -29,7 +29,7 @@ import { map } from 'rxjs'
                 (click)="activeImage.set(url)"
                 class="aspect-ratio-square b-1 b-outline shape-s"
               >
-                <img class="aspect-ratio-square h-16" [src]="url" />
+                <img class="w-16" [src]="url" />
               </button>
             }
           </div>
